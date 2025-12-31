@@ -3,27 +3,27 @@ The main purpose of the Navigation Toolbox is to give LLM/AI/Agents the ability 
 
 ## Time and Place
 Accurate determination of local time and sun position at any place in the world, taking into account time zones and daylight savings corrections.
-LLM prompt examples using these tools:
+### LLM prompt examples using these tools:
 
-“How many hours of daylight will there be on the Isle of Man on June 15th this year?”
+_“How many hours of daylight will there be on the Isle of Man on June 15th this year?”_
 
-“What time is it in Hong Kong right now, and what are the light conditions (daylight, twilight, or darkness)?”
+_“What time is it in Hong Kong right now, and what are the light conditions (daylight, twilight, or darkness)?”_
 
-“What time is sunrise and sunset in Hamburg, Germany tomorrow?”
+_“What time is sunrise and sunset in Hamburg, Germany tomorrow?”_
 
-“My flight is departing for San Francisco from London at 3 hours from now. The flight will take ten hours. What time will it be when I arrive in San Francisco, and what will the lighting conditions be?”
+_“My flight is departing for San Francisco from London at 3 hours from now. The flight will take ten hours. What time will it be when I arrive in San Francisco, and what will the lighting conditions be?”_
 
 ## Roadtrips
 Accurate determination of driving distances and times anywhere in the world, taking into account current traffic (and allowing for ferry trip times if water crossing required). Computation of latitude and longitude for any place specified by address, postal code, name, landmark, etc. Search for hotels, restaurants, or any other typical feature, within a specified range of any location.
-LLM prompt examples using these tools:
+### LLM prompt examples using these tools:
 
-“What is the distance, and how long will it take, to drive from Joshua Tree to Oakland CA?”
+_“What is the distance, and how long will it take, to drive from Joshua Tree to Oakland CA?”_
 
-“Find me 10 hotels within 20 miles of Prestwick Airport, UK”
+_“Find me 10 hotels within 20 miles of Prestwick Airport, UK”_
 
-“What is the latitude and longitude of UK postcode IM4 7BN?”
+_“What is the latitude and longitude of UK postcode IM4 7BN?”_
 
-“If I drive from Berlin to Munich tomorrow, departing at 9am local time, will it be dark when I arrive?”
+_“If I drive from Berlin to Munich tomorrow, departing at 9am local time, will it be dark when I arrive?”_
 
 ## General Aviation
 Accurate computation of distances between points on Earth using the World Geodetic System 1984 (WGS84), the geodetic reference system that defines the Earth’s shape and size as an oblate spheroid, the standard for the Global Positioning System (GPS). The distances can be computed either as great-circles (i.e., shortest distance between the two points) or rhumblines (i.e., the distance measured along a straight line drawn on a mercator projection map).
@@ -35,29 +35,29 @@ Obtain the latest aviation weather report (METAR) and forecast (TAF) for any wor
 Computation of aviation-pertinent atmospheric parameters (versus altitude) given the measured temperature and pressure (from METARs).
 Perform VFR (Visual-Flight-Rules) flight route calculations between specified origin and destination airfields, plus up to ten optional intermediate waypoints (when not routing direct). Automatically computes wind corrections (using latest METARs along the route, and assuming a power-law extrapolation from METAR measured winds at 10m AGL to wind aloft), magnetic variation, and sunlight conditions (e.g., if daylight, twilight, or night-time at each waypoint plus direction (azimuth and zenith) to the sun relative to flight track (to assess if glare will be an issue). For the origin and departure airfields, gives essential information for each runway (surface, dimensions) plus the crosswind and headwind/tailwind components (computed from latest METARs), plus, where the information is available, details on runway lighting, visual approach aids, and instrument approach aids. Also provides the communication frequencies for the origin and departure airfields, plus where the information is available, telephone contact details, operating hours, and whether PPR is required. Utilizes current atmospheric conditions (from latest METAR data) to model the atmosphere (and its deviations from the International Standard Atmosphere) in order to compute for example, density altitude at the departure airfield, true airspeed (TAS), Mach number, and estimated cloud-base and freezing altitude along the route, and pressure altitude at each waypoint (i.e., the altitude displayed on the altimeter when set at standard pressure setting, useful for flight level determination). All navigation timings are presented in UTC as well as in local time (taking account of timezone and Daylight-Savings corrections). As well as providing a route summary (total distance, flight time, fuel consumption), all relevant data is provided per leg to facilitate the generation of a navlog (e.g., groundspeed, distance, timings, magnetic heading and true track, fuel used, etc). Aircraft Performance and route profile data (indicated airspeed, altitude, fuel flow rate) can be specified or default values (100kts, 2500ft 8 USgal/hour) are used if omitted. The latest METAR (current weather) and TAF (forecasts) reports are provided for each waypoint. A URL is also provided which enables the route to be viewed on skyvector.com (via any web browser). From there, the route can be exported to popular pilot apps such as Garmin Pilot, ForeFlight etc.
 
-LLM prompt examples using these tools:
+### LLM prompt examples using these tools:
 
-“What is the great-circle distance between Prestwick Airport and Goodwood Airfield in the UK?”
+_“What is the great-circle distance between Prestwick Airport and Goodwood Airfield in the UK?”_
 
-“What is the latitude and longitude of the location 25 nautical miles on a true bearing of 335 degrees from EGNS?”
+_“What is the latitude and longitude of the location 25 nautical miles on a true bearing of 335 degrees from EGNS?”_
 
-“What is the latitude and longitude of the location 45 nautical miles on a magnetic bearing of 85 degrees from the Daventry VOR (DTY) in the UK?”
+_“What is the latitude and longitude of the location 45 nautical miles on a magnetic bearing of 85 degrees from the Daventry VOR (DTY) in the UK?”_
 
-“What is the nearest METAR report for Wolverhampton Airport, UK?”
+_“What is the nearest METAR report for Wolverhampton Airport, UK?”_
 
-“Perform the flight route calculations for a VFR flight from Wolverhampton Airport, UK, to EGTK, with intermediate waypoint 15 nautical miles on a magnetic bearing of 210 degrees from Wolverhampton. Indicated airspeed will be 95 kts, altitude 2000 ft, departing Wolverhampton 45 minutes from now. Provide details for the navlog, plus a skyvector URL.”
-
-Then,
-“How long is the drive from EGTK to Chipping Norton?”
-
-“Perform the flight route calculations for a VFR flight from Palo Alto Airport, CA, to Half Moon Bay airport, CA, with an intermediate waypoint overflying Stanford University. Indicated airspeed will be 100 kts, altitude 3000 ft, departing Palo Alto two hours from now. Provide details for the navlog, plus a skyvector URL.”
+_“Perform the flight route calculations for a VFR flight from Wolverhampton Airport, UK, to EGTK, with intermediate waypoint 15 nautical miles on a magnetic bearing of 210 degrees from Wolverhampton. Indicated airspeed will be 95 kts, altitude 2000 ft, departing Wolverhampton 45 minutes from now. Provide details for the navlog, plus a skyvector URL.”_
 
 Then,
-“Are there any Mexican restaurants within 10 miles of Half Moon Bay airport?”
+_“How long is the drive from EGTK to Chipping Norton?”_
 
-# How to Use the teckel Toolboxes
+_“Perform the flight route calculations for a VFR flight from Palo Alto Airport, CA, to Half Moon Bay airport, CA, with an intermediate waypoint overflying Stanford University. Indicated airspeed will be 100 kts, altitude 3000 ft, departing Palo Alto two hours from now. Provide details for the navlog, plus a skyvector URL.”_
 
-First generate an API key using the teckel App.
+Then,
+_“Are there any Mexican restaurants within 10 miles of Half Moon Bay airport?”_
+
+## How to Use the teckel Toolboxes
+
+### First generate an API key using the teckel App.
 
 Do the following:
 
@@ -69,20 +69,15 @@ Do the following:
 
 4. For illustrative purposes, we will use the following fake key d1e12345-c234-45a6-9b76-1234567891ff in the examples presented below. You would substitute your actual API key in place of this fake key.
 
-Next, decide if you are using the MCP servers or RESTful (API) to access the tools.
+### Next, decide if you are using the MCP servers or RESTful (API) to access the tools.
 
 # Using the MCP Servers
 ## Configure your MCP client-of-choice
 Whatever the client, the configuration is essentially the same. Namely, provide the client with the MCP server endpoint and access credentials. These are typically in the form of a configuration JSON snippet, using your API key as the “Bearer” token in the “Authorization” tag. For example, here is the precise configuration for use with the Cursor desktop app (navigate within the Cursor app to the Cursor Settings -> Tools & MCP -> + New MCP server and enter these details using your actual teckel API key to replace this fake one).
-##MCP JSON configuration (example for use with Cursor)
+### MCP JSON configuration (example for use with Cursor)
+```
 {
- "mcpServers": {
-    "teckel-ethereum-toolbox": {
-      "url": "https://mcp-servers.bh.tkllabs.io:9780/ethereum-mcp",
-      "headers": {
-        "Authorization": "Bearer d1e12345-c234-45a6-9b76-1234567891ff"
-      }
-    },
+ "mcpServers": {    
     "teckel-navigation-toolbox": {
       "url": "https://mcp-servers.bh.tkllabs.io:9780/navigation-mcp",
       "headers": {
@@ -91,4 +86,127 @@ Whatever the client, the configuration is essentially the same. Namely, provide 
     }   
   }
 }
+```
+NOTE: This configuration assumes the HTTP(streamable) protocol. If your client requires the older (now legacy) SSE protocol, replace “navigation-mcp” with “navigation-sse”.
+
+### MCP JSON Configuration (example for use with n8n)
+Similarly, for use with n8n, below is the JSON code snippet for a sample workflow which accesses the teckel Ethereum and Navigation Toolkits MCP server. (Save this entire snippet to a .json file; then import the file to your n8n workflow.) You will need to replace the credentials with your own “Bearer Auth” credential within n8n (using your teckel API key as the “Bearer token”). 
+```
+{
+  "name": "Teckel Tools MCP Example",
+  "nodes": [
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp-servers.bh.tkllabs.io:9780/ethereum-mcp",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -16,
+        640
+      ],
+      "id": "569bf922-b8cb-40a0-beb8-2da890dab925",
+      "name": "Teckel Tools MCP server: ethereum",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "zPHt516IS5uuS2S5",
+          "name": "TECKEL APIKEY"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "GPT-5"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Perform a VFR flight route calculation from EGNS to EGPK, departing 60 minutes from now. Include an intermediate waypoint on magnetic bearing 320 degrees at 20 nm from EGNS, followed by another on true bearing 355 for 15 nm from the previous waypoint.\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -496,
+        368
+      ],
+      "id": "5c9a94cd-71a4-4d77-84f5-664ef14871af",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "EvoF3L2GoYTtESR3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp-servers.bh.tkllabs.io:9780/navigation-mcp",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        192,
+        640
+      ],
+      "id": "016dae90-92b4-4eed-9120-f8531bafbd10",
+      "name": "Teckel Tools MCP server: navigation",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "zPHt516IS5uuS2S5",
+          "name": "TECKEL APIKEY"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Teckel Tools MCP server: ethereum": {
+      "ai_tool": [
+        [
+          {
+            "node": "Message a model",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Teckel Tools MCP server: navigation": {
+      "ai_tool": [
+        [
+          {
+            "node": "Message a model",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "626e0784-a43b-4857-bf54-91e7f1c32c59",
+  "meta": {
+    "templateId": "self-building-ai-agent",
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c7702199c1f42229c256ae3782d70f8576bc5028e557d0903826477f97e032b"
+  },
+  "id": "rAm1XjSle8lYmOcT",
+  "tags": []
+}
+```
 
