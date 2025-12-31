@@ -209,4 +209,35 @@ Similarly, for use with n8n, below is the JSON code snippet for a sample workflo
   "tags": []
 }
 ```
+# Using the RESTful API Servers
+The benefit of using the MCP servers is that the connected LLMs can parse the natural language in the user prompts, populate the required parameters for calling the toolbox API functions, then likewise unravel the returned JSON structure into natural language for presentation to the user. However, if you wish to utilise the teckel toolkits at a lower level (e.g., in your own app), you can call the functions directly using the RESTful (POST) API protocols. You are then responsible for populating the input parameters, and handling the returned JSON output.
 
+The base API URL endpoint is identical to the MCP server endpoint:
+```
+https://mcp-servers.bh.tkllabs.io:9780/
+```
+The desired function name must be appended to this URL, and the function arguments must be added as query-string parameters. The teckel API key must be added as a Bearer Token in the Authorization header. The POST protocol must be used (rather than GET), but the body can be empty since the parameters are passed in the query-string.  Below is an example curl request for calling the _perform_sun_calculations_ from the Navigation Toolkit with the required parameters:
+### Curl Request
+```
+curl -X POST \   'https://mcp-servers.bh.tkllabs.io:9780/perform_sun_calculations?latitude=54&longitude=-4.4861228&altitudeMetres=100&dateTimeUTCstr=25-Oct-2025%2014:18:39' \
+  -H 'Authorization: Bearer d1e12345-c234-45a6-9b76-1234567891ff' \
+  -H 'Content-Type: application/json'
+```
+### JSON Response
+```
+{"results":{"sunElevation":17.66329058182842,"sunAzimuth":215.1455213675287,"sunriseUTC":"25-Oct-2025 07:04:51","sunriseAzimuth":109.78189990283305,"sunsetUTC":"25-Oct-2025 16:58:17","sunsetAzimuth":249.96470561181022,"middayUTC":"25-Oct-2025 12:01:38","middaySunElevation":23.75305488041259,"daylightHours":"09:53:26"}}
+```
+## Functions (tools) list
+The full suite of functions available in the toolkit can be found at https://teckel.io/ai-mcp-services/
+
+## Pricing
+Pricing (via _teckel credits_ purchased within the teckel App) for usage of each function in the toolkit can be found at https://teckel.io/ai-mcp-services/
+
+## Rate Limiting
+All MCP/API calls are subject to rate-limiting per API key. The thresholds are not published, but if a given API key has exceeded the rate limit, a 429 error code will be returned on the given call.
+
+## Errors
+If the MCP/API call fails due to user error resulting in a 4xx error code, the user is charged one Base Call Fee (see https://teckel.io/ai-mcp-services/). If the API call fails due to server error resulting in a 5xx error code, the user is not charged. If the given call is part of a cascade of nested calls, the above rules apply to the “outer” call: In other words, if the outer call fails with a 4xx error code, the user is charged one Base Call Fee (for the failed outer call), and there will be no charge for any of the cascaded calls (whether they succeeded or not). Likewise, if the outer call fails with a 5xx error code, the user is not charged at all (even if the cascaded calls succeed).
+ 
+## Note on API Key Security
+Should you have concerns that your API key has been compromised (and someone else may be consuming your teckel credits by using your key), simply replace the key via the API Key Manager → Replace API key in the teckel App. The old key will then be immediately disabled.
